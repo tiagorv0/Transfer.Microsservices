@@ -1,0 +1,6 @@
+@Transfer.Account_HostAddress = http://localhost:5282
+
+GET {{Transfer.Account_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
