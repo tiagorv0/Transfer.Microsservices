@@ -12,11 +12,15 @@ public class SendNotificationEvent
         Amount = transfer.Amount;
         ScheduleDate = transfer.ScheduleDate;
         CreatedAt = transfer.CreatedAt;
+        SenderKey = transfer.SenderKey;
+        ReceiverKey = transfer.ReceiverKey;
     }
 
     public TransferStatus Status { get; private set; }
     public string SenderName { get; private set; }
+    public string SenderKey { get; private set; }
     public string ReceiverName { get; private set; }
+    public string ReceiverKey { get; private set; }
     public decimal Amount { get; private set; }
     public DateTime? ScheduleDate { get; private set; }
     public DateTime CreatedAt { get; private set; }

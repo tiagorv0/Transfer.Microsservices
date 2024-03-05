@@ -5,15 +5,17 @@ namespace Transfer.Notification.Events;
 public class SendNotificationEvent
 {
     public NotificationStatus Status { get; set; }
-    public string SenderName { get; private set; }
-    public string ReceiverName { get; private set; }
-    public decimal Amount { get; private set; }
-    public DateTime? ScheduleDate { get; private set; }
-    public DateTime CreatedAt { get; private set; }
+    public string SenderName { get; set; }
+    public string SenderKey { get; set; }
+    public string ReceiverKey { get; set; }
+    public string ReceiverName { get; set; }
+    public decimal Amount { get;  set; }
+    public DateTime? ScheduleDate { get; set; }
+    public DateTime CreatedAt { get; set; }
 
     public Domain.Notification ToModel()
     {
-        return new Domain.Notification(Status, GetTitle(), GetMessage(), false, null);
+        return new Domain.Notification(Status, GetTitle(), GetMessage(), false, null, SenderKey, ReceiverKey);
     }
 
     private string GetMessage()

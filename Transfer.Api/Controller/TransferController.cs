@@ -30,8 +30,12 @@ public class TransferController : ControllerBase
     [HttpPut("cancel-transfer/{id}")]
     public async Task<IActionResult> CancelTransfer(Guid id, CancellationToken cancellationToken = default)
     {
-        await _service.CancelTransferAsync(id, cancellationToken);
-        return Ok();
+        var transfer = await _service.CancelTransferAsync(id, cancellationToken);
+
+        if (transfer is null)
+            return NotFound();
+
+        return Ok(transfer);
     }
 
     [HttpGet]

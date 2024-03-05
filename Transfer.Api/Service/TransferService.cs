@@ -26,15 +26,20 @@ public class TransferService : ITransferService
         return new TransferResponse(transfer);
     }
 
-    public async Task CancelTransferAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<TransferResponse> CancelTransferAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var transfer = await _repository.GetOneAsync(x => x.Id == id, cancellationToken);
+
+        if (transfer is null)
+            return default;
 
         transfer.Cancel();
 
         await _repository.UpdateAsync(id, transfer, cancellationToken);
 
         _eventBus.Publish<SendNotificationEvent>(new(transfer), "notification");
+
+        return new TransferResponse(transfer);
     }
 
     public async Task<TransferResponse> ScheduleTransferAsync(TransferRequest request, CancellationToken cancellationToken = default)

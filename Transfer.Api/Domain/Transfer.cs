@@ -10,13 +10,11 @@ public class Transfer
 
     public string SenderKey { get; private set; }
     public string SenderName { get; private set; }
-    public Guid SenderId { get; private set; }
     public string ReceiverKey { get; private set; }
     public string ReceiverName { get; private set; }
-    public Guid ReceiverId { get; private set; }
     public TransferStatus Status { get; private set; }
     public decimal Amount { get; private set; }
-    public DateTime? ScheduleDate { get; set; }
+    public DateTime? ScheduleDate { get; private set; }
     
 
     public void Cancel()
@@ -28,7 +26,7 @@ public class Transfer
         Status = TransferStatus.Canceled;
     }
 
-    public void SendTransfer(string senderKey, string senderName, string receiverKey, string receiverName, decimal amount, Guid senderId, Guid receiverId)
+    public void SendTransfer(string senderKey, string senderName, string receiverKey, string receiverName, decimal amount)
     {
         Id = Guid.NewGuid();
         CreatedAt = DateTime.Now;
@@ -38,11 +36,9 @@ public class Transfer
         ReceiverName = receiverName;
         Amount = amount;
         Status = TransferStatus.Completed;
-        SenderId = senderId;
-        ReceiverId = receiverId;
     }
 
-    public void ScheduleTransfer(string senderKey, string senderName, string receiverKey, string receiverName, decimal amount, DateTime scheduleDate, Guid senderId, Guid receiverId)
+    public void ScheduleTransfer(string senderKey, string senderName, string receiverKey, string receiverName, decimal amount, DateTime scheduleDate)
     {
         Id = Guid.NewGuid();
         CreatedAt = DateTime.Now;
@@ -53,7 +49,5 @@ public class Transfer
         Amount = amount;
         ScheduleDate = scheduleDate;
         Status = TransferStatus.Scheduled;
-        SenderId = senderId;
-        ReceiverId = receiverId;
     }
 }
