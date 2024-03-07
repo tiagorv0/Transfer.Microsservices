@@ -21,11 +21,45 @@ public class AccountController : ControllerBase
         return Ok(await _service.CreateAccountAsync(request, cancellationToken));
     }
 
-    [HttpPut("update-account/{id}")]
-    public async Task<IActionResult> UpdateAccount(Guid id, [FromBody] AccountRequest request, CancellationToken cancellationToken = default)
+    [HttpPut("withdraw/{id}")]
+    public async Task<IActionResult> Withdraw(Guid id, decimal amount, CancellationToken cancellationToken = default)
     {
-        await _service.UpdateAccountAsync(id, request, cancellationToken);
-        return Ok();
+        var result = await _service.WithdrawAsync(id, amount, cancellationToken);
+
+        if (result is null)
+            return NotFound();
+
+        return Ok(result);
+    }
+
+    [HttpPut("deposit/{id}")]
+    public async Task<IActionResult> Deposit(Guid id, decimal amount, CancellationToken cancellationToken = default)
+    {
+        var result = await _service.DepositAsync(id, amount, cancellationToken);
+
+        if (result is null)
+            return NotFound();
+
+        return Ok(result);
+    }
+
+    [HttpPut("deactivate/{id}")]
+    public async Task<IActionResult> Deactivate(Guid id, CancellationToken cancellationToken = default)
+    {
+        var result = await _service.DeactivateAccount(id, cancellationToken);
+
+        if (result is null)
+            return NotFound();
+
+        return Ok(result);
+    }
+
+    [HttpGet("hasBalance-to-transfer/{id}")]
+    public async Task<IActionResult> HasBalanceToTransfer(Guid id, decimal amount, CancellationToken cancellationToken = default)
+    {
+        var account = await _service.HasBalanceToTransfer(id, amount, cancellationToken);
+
+        return Ok(account);
     }
 
     [HttpGet]

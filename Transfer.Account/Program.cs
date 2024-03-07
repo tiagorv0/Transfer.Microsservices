@@ -1,4 +1,5 @@
 using Transfer.Account.Domain.Options;
+using Transfer.Account.Events;
 using Transfer.Account.Infra;
 using Transfer.Account.Service;
 
@@ -19,7 +20,7 @@ builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("Ra
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 
-builder.Services.AddHostedService<TransferNotificationConsumer>();
+builder.Services.AddHostedService<TransferConsumer>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -46,4 +46,9 @@ public class Account
         if (Balance < 0)
             throw new InvalidOperationException("Insufficient funds");
     }
+
+    public bool HasBalanceToTransfer(decimal amount)
+    {
+        return Balance >= amount;
+    }
 }

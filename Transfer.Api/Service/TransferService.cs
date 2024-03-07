@@ -23,6 +23,8 @@ public class TransferService : ITransferService
 
         _eventBus.Publish<SendNotificationEvent>(new(transfer), "notification");
 
+        _eventBus.Publish<RealizeTransferAccountEvent>(new(transfer), "account");
+
         return new TransferResponse(transfer);
     }
 
