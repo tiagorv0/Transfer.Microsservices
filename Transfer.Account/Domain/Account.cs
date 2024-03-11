@@ -26,8 +26,17 @@ public class Account
         Name = name;
     }
 
+    public void Reactivate()
+    {
+        UpdateAt = DateTime.Now;
+        Active = true;
+    }
+
     public void Deactivate()
     {
+        if (Balance > 0)
+            throw new InvalidOperationException("Account with balance cannot be deactivated");
+
         UpdateAt = DateTime.Now;
         Active = false;
     }

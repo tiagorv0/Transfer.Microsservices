@@ -54,6 +54,17 @@ public class AccountController : ControllerBase
         return Ok(result);
     }
 
+    [HttpPut("reactivate/{id}")]
+    public async Task<IActionResult> Reactivate(Guid id, CancellationToken cancellationToken = default)
+    {
+        var result = await _service.ReactivateAccount(id, cancellationToken);
+
+        if (result is null)
+            return NotFound();
+
+        return Ok(result);
+    }
+
     [HttpGet("hasBalance-to-transfer/{id}")]
     public async Task<IActionResult> HasBalanceToTransfer(Guid id, decimal amount, CancellationToken cancellationToken = default)
     {

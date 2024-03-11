@@ -6,7 +6,7 @@ public class NotificationResponse
 {
     public Guid Id { get; private set; }
     public DateTime CreatedAt { get; private set; }
-    public NotificationStatus Status { get; set; }
+    public NotificationStatus Status { get; private set; }
     public string Title { get; private set; }
     public string Message { get; private set; }
     public bool WasViewed { get; private set; }
