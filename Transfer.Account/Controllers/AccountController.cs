@@ -65,10 +65,10 @@ public class AccountController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("hasBalance-to-transfer/{id}")]
-    public async Task<IActionResult> HasBalanceToTransfer(Guid id, decimal amount, CancellationToken cancellationToken = default)
+    [HttpGet("hasBalance-to-transfer/{transferKey}")]
+    public async Task<IActionResult> HasBalanceToTransfer(string transferKey, decimal amount, CancellationToken cancellationToken = default)
     {
-        var account = await _service.HasBalanceToTransfer(id, amount, cancellationToken);
+        var account = await _service.HasBalanceToTransfer(transferKey, amount, cancellationToken);
 
         return Ok(account);
     }
@@ -79,10 +79,10 @@ public class AccountController : ControllerBase
         return Ok(await _service.GetAllAsync(cancellationToken));
     }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetAccountById(Guid id, CancellationToken cancellationToken = default)
+    [HttpGet("{transferKey}")]
+    public async Task<IActionResult> GetAccountByTransferKey([FromRoute] string transferKey, CancellationToken cancellationToken = default)
     {
-        var account = await _service.GetOneAsync(id, cancellationToken);
+        var account = await _service.GetOneAsync(transferKey, cancellationToken);
 
         if (account is null)
             return NotFound();

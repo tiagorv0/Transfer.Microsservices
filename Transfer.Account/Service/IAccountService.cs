@@ -10,8 +10,8 @@ public interface IAccountService
     Task<AccountResponse> WithdrawAsync(Guid id, decimal amount, CancellationToken cancellationToken = default);
     Task<AccountResponse> DeactivateAccount(Guid id, CancellationToken cancellationToken = default);
     Task<AccountResponse> ReactivateAccount(Guid id, CancellationToken cancellationToken = default);
-    Task<bool> HasBalanceToTransfer(Guid id, decimal amount, CancellationToken cancellationToken = default);
-    Task<AccountResponse> GetOneAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<bool> HasBalanceToTransfer(string transferKey, decimal amount, CancellationToken cancellationToken = default);
+    Task<AccountResponse> GetOneAsync(string transferKey, CancellationToken cancellationToken = default);
     Task<IEnumerable<AccountResponse>> GetAllAsync(CancellationToken cancellationToken = default);
     Task TransferBetweenAccounts(TransferEvent transfer, CancellationToken cancellationToken = default);
 }

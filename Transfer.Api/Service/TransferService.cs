@@ -1,4 +1,5 @@
-﻿using Transfer.Api.Domain.DTO;
+﻿using Transfer.Api.CrossCutting;
+using Transfer.Api.Domain.DTO;
 using Transfer.Api.Event;
 using Transfer.Api.Infra;
 
@@ -8,16 +9,20 @@ public class TransferService : ITransferService
 {
     private readonly ITransferRepository _repository;
     private readonly IEventBus _eventBus;
+    private readonly ITransferAccountApi _transferAccount;
 
-    public TransferService(ITransferRepository repository, IEventBus eventBus)
+    public TransferService(ITransferRepository repository, IEventBus eventBus, ITransferAccountApi transferAccount)
     {
         _repository = repository;
         _eventBus = eventBus;
+        _transferAccount = transferAccount;
     }
 
     public async Task<TransferResponse> CreateTransferAsync(TransferRequest request, CancellationToken cancellationToken = default)
     {
-        var transfer = request.ToSendTransfer();
+        var (senderName, receiverName) = await VerifyBalanceAndGetSenderAndReceiverName(request);
+
+        var transfer = request.ToSendTransfer(senderName, receiverName);
 
         await _repository.AddAsync(transfer, cancellationToken);
 
@@ -46,7 +51,9 @@ public class TransferService : ITransferService
 
     public async Task<TransferResponse> ScheduleTransferAsync(TransferRequest request, CancellationToken cancellationToken = default)
     {
-        var transfer = request.ToScheduleTransfer();
+        var (senderName, receiverName) = await VerifyBalanceAndGetSenderAndReceiverName(request);
+
+        var transfer = request.ToScheduleTransfer(senderName, receiverName);
 
         await _repository.AddAsync(transfer, cancellationToken);
 
@@ -69,5 +76,23 @@ public class TransferService : ITransferService
             return default;
 
         return new TransferResponse(transfer);
+    }
+
+    private async Task<(string senderName, string receiverName)> VerifyBalanceAndGetSenderAndReceiverName(TransferRequest request)
+    {
+        var accountSender = await _transferAccount.GetAccountByTransferKey(request.SenderKey);
+        var accountReceiver = await _transferAccount.GetAccountByTransferKey(request.ReceiverKey);
+
+        if (!accountSender.IsSuccessStatusCode)
+            throw new ArgumentException(accountSender.Error.Message);
+
+        if (!accountReceiver.IsSuccessStatusCode)
+            throw new ArgumentException(accountReceiver.Error.Message);
+
+
+        if (accountSender.Content.HasBalanceToTransfer(request.Amount))
+            return (accountSender.Content.Name, accountReceiver.Content.Name);
+
+        throw new ArgumentException("Insufficient balance");
     }
 }

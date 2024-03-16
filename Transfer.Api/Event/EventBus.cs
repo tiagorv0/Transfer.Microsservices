@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
@@ -21,6 +22,7 @@ public class EventBus : IEventBus
         var connectionFactory = new ConnectionFactory
         {
             HostName = _options.Host,
+            Port = _options.Port,
         };
 
         using var connection = connectionFactory.CreateConnection();

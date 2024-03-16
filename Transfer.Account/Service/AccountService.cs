@@ -78,9 +78,9 @@ public class AccountService : IAccountService
         return new AccountResponse(account);
     }
 
-    public async Task<bool> HasBalanceToTransfer(Guid id, decimal amount, CancellationToken cancellationToken = default)
+    public async Task<bool> HasBalanceToTransfer(string transferKey, decimal amount, CancellationToken cancellationToken = default)
     {
-        var account = await _accountRepository.GetOneAsync(x => x.Id == id && x.Active, cancellationToken);
+        var account = await _accountRepository.GetOneAsync(x => x.TransferKey == transferKey && x.Active, cancellationToken);
 
         if (account is null)
             return false;
@@ -103,9 +103,9 @@ public class AccountService : IAccountService
         await _accountRepository.UpdateAsync(receiver.Id, receiver, cancellationToken);
     }
 
-    public async Task<AccountResponse> GetOneAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<AccountResponse> GetOneAsync(string transferKey, CancellationToken cancellationToken = default)
     {
-        var account = await _accountRepository.GetOneAsync(x => x.Id == id && x.Active, cancellationToken);
+        var account = await _accountRepository.GetOneAsync(x => x.TransferKey == transferKey && x.Active, cancellationToken);
 
         if (account is null)
             return default;

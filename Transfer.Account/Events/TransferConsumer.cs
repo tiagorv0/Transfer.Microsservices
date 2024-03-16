@@ -19,6 +19,7 @@ public class TransferConsumer : BackgroundService
         var connectionFactory = new ConnectionFactory
         {
             HostName = options.Value.Host,
+            Port = options.Value.Port,
         };
 
         var connection = connectionFactory.CreateConnection();
