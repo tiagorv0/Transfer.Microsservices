@@ -29,7 +29,10 @@ public class NotificationRepository : INotificationRepository
 
     public async Task<IEnumerable<Domain.Notification>> GetAllAsync(Expression<Func<Domain.Notification, bool>> filter = null, CancellationToken cancellationToken = default)
     {
-        return await _notifications.Find(filter).ToListAsync(cancellationToken);
+        if (filter is not null)
+            return await _notifications.Find(filter).ToListAsync(cancellationToken);
+
+        return await _notifications.AsQueryable().ToListAsync(cancellationToken);
     }
 
     public async Task<Domain.Notification> GetOneAsync(Expression<Func<Domain.Notification, bool>> filter = null, CancellationToken cancellationToken = default)

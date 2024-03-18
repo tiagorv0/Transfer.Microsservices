@@ -35,7 +35,7 @@ public class TransferService : ITransferService
 
     public async Task<TransferResponse> CancelTransferAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var transfer = await _repository.GetOneAsync(x => x.Id == id, cancellationToken);
+        var transfer = await _repository.GetOneAsync(x => x.Id == id && x.Status == Domain.Enum.TransferStatus.Scheduled, cancellationToken);
 
         if (transfer is null)
             return default;
@@ -84,10 +84,10 @@ public class TransferService : ITransferService
         var accountReceiver = await _transferAccount.GetAccountByTransferKey(request.ReceiverKey);
 
         if (!accountSender.IsSuccessStatusCode)
-            throw new ArgumentException(accountSender.Error.Message);
+            throw new ArgumentException("Sender not found");
 
         if (!accountReceiver.IsSuccessStatusCode)
-            throw new ArgumentException(accountReceiver.Error.Message);
+            throw new ArgumentException("Receiver not found");
 
 
         if (accountSender.Content.HasBalanceToTransfer(request.Amount))

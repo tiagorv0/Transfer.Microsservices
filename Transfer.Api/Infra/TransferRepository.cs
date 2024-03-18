@@ -28,7 +28,10 @@ public class TransferRepository : ITransferRepository
 
     public async Task<IEnumerable<Domain.Transfer>> GetAllAsync(Expression<Func<Domain.Transfer, bool>> filter = null, CancellationToken cancellationToken = default)
     {
-        return await _transfers.Find(filter).ToListAsync(cancellationToken);
+        if (filter is not null)
+            return await _transfers.Find(filter).ToListAsync(cancellationToken);
+
+        return await _transfers.AsQueryable().ToListAsync(cancellationToken);
     }
 
     public async Task<Domain.Transfer> GetOneAsync(Expression<Func<Domain.Transfer, bool>> filter = null, CancellationToken cancellationToken = default)
