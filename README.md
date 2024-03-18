@@ -48,3 +48,9 @@
 <pre>/api/transfer/create-transfer</pre>
 <p>Insira a TransferKey de quem vai enviar(Sender) o valor e a TransferKey de quem vai receber(Receiver)</p>
 <p>ScheduleDate pode deixar nulo</p>
+
+<p><img src="https://github.com/tiagorv0/Transfer.Microsservices/blob/main/images/Screenshot%202024-03-18%20194534.png" /></p>
+<br>
+<p><img src="https://github.com/tiagorv0/Transfer.Microsservices/blob/main/images/Screenshot%202024-03-18%20194559.png" /></p>
+<br>
+<p><img src="https://github.com/tiagorv0/Transfer.Microsservices/blob/main/images/Screenshot%202024-03-18%20194553.png" /></p>
