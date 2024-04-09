@@ -1,14 +1,6 @@
 <h1 align="center">FIAP - Transfer.Microsservices - TECH CHALLENGE 3</h1>
 <br>
 
-<h3 align="center">Integrantes do Grupo:</h3>
-<br>
-<li>Bruno Moura     - RM 350846</li>
-<li>Marcos André    - RM 351923</li>
-<li>Tiago Vazzoller - RM 351733</li>
-<li>Victor Hugo     - RM 351315</li>
-<br>
-
 <h3 align="center">Projeto Transfer.Microsservices</h3>
 
 <h3 align="center">Para poder rodar o projeto</h3>
