@@ -1,7 +1,21 @@
 <h1 align="center">FIAP - Transfer.Microsservices - TECH CHALLENGE 3</h1>
 <br>
 
-<h3 align="center">Projeto Transfer.Microsservices</h3>
+<h2 align="center">Projeto Transfer.Microsservices</h3>
+
+<p>Trabalho realizando durante a Pós-Graduação da FIAP de Arquitetura de Sistemas .NET + Azure</p>
+<h3>Proposta: </h3>
+<p>Criar uma microserviço com mensageria.</p>
+<h3>O que foi desenvolvido:</h3>
+<p>Foi desenvolvido 3 API's em .NET 8 para gerenciar transferência de valores monetários parecido com PIX.</p>
+<li>API com dados do usuário e valor em carteira.</li>
+<li>API para realizar transferências</li>
+<li>API para notificações</li>
+<h3>O que foi usado?</h3>
+<li>3 API's em .NET 8</li>
+<li>RabbitMQ</li>
+<li>MongoDB</li>
+<li>Refit</li>
 
 <h3 align="center">Para poder rodar o projeto</h3>
 <br>
