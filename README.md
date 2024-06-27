@@ -1,15 +1,21 @@
 <h1 align="center">FIAP - Transfer.Microsservices - TECH CHALLENGE 3</h1>
 <br>
 
-<h3 align="center">Integrantes do Grupo:</h3>
-<br>
-<li>Bruno Moura     - RM 350846</li>
-<li>Marcos André    - RM 351923</li>
-<li>Tiago Vazzoller - RM 351733</li>
-<li>Victor Hugo     - RM 351315</li>
-<br>
+<h2 align="center">Projeto Transfer.Microsservices</h3>
 
-<h3 align="center">Projeto Transfer.Microsservices</h3>
+<p>Trabalho realizando durante a Pós-Graduação da FIAP de Arquitetura de Sistemas .NET + Azure</p>
+<h3>Proposta: </h3>
+<p>Criar uma microserviço com mensageria.</p>
+<h3>O que foi desenvolvido:</h3>
+<p>Foi desenvolvido 3 API's em .NET 8 para gerenciar transferência de valores monetários parecido com PIX.</p>
+<li>API com dados do usuário e valor em carteira.</li>
+<li>API para realizar transferências</li>
+<li>API para notificações</li>
+<h3>O que foi usado?</h3>
+<li>3 API's em .NET 8</li>
+<li>RabbitMQ</li>
+<li>MongoDB</li>
+<li>Refit</li>
 
 <h3 align="center">Para poder rodar o projeto</h3>
 <br>
@@ -48,3 +54,9 @@
 <pre>/api/transfer/create-transfer</pre>
 <p>Insira a TransferKey de quem vai enviar(Sender) o valor e a TransferKey de quem vai receber(Receiver)</p>
 <p>ScheduleDate pode deixar nulo</p>
+
+<p><img src="https://github.com/tiagorv0/Transfer.Microsservices/blob/main/images/Screenshot%202024-03-18%20194534.png" /></p>
+<br>
+<p><img src="https://github.com/tiagorv0/Transfer.Microsservices/blob/main/images/Screenshot%202024-03-18%20194559.png" /></p>
+<br>
+<p><img src="https://github.com/tiagorv0/Transfer.Microsservices/blob/main/images/Screenshot%202024-03-18%20194553.png" /></p>
