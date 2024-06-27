@@ -10,7 +10,6 @@ RUN dotnet restore "Transfer.Api/Transfer.Api.csproj"
 COPY . .
 WORKDIR "/src/Transfer.Api"
 RUN dotnet build "Transfer.Api.csproj" -c Release -o /app/build
-RUN dotnet dotnet dev-certs https --trust
 
 FROM build AS publish
 RUN dotnet publish "Transfer.Api.csproj" -c Release -o /app/publish

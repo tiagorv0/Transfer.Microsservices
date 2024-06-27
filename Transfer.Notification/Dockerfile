@@ -10,7 +10,6 @@ RUN dotnet restore "Transfer.Notification/Transfer.Notification.csproj"
 COPY . .
 WORKDIR "/src/Transfer.Notification"
 RUN dotnet build "Transfer.Notification.csproj" -c Release -o /app/build
-RUN dotnet dotnet dev-certs https --trust
 
 FROM build AS publish
 RUN dotnet publish "Transfer.Notification.csproj" -c Release -o /app/publish

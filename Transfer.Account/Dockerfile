@@ -10,7 +10,6 @@ RUN dotnet restore "Transfer.Account/Transfer.Account.csproj"
 COPY . .
 WORKDIR "/src/Transfer.Account"
 RUN dotnet build "Transfer.Account.csproj" -c Release -o /app/build
-RUN dotnet dotnet dev-certs https --trust
 
 FROM build AS publish
 RUN dotnet publish "Transfer.Account.csproj" -c Release -o /app/publish

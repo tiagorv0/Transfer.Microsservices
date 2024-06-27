@@ -19,29 +19,24 @@ services:
     ports:
       - 5680:5672
       - 15680:15672
-    healthcheck:
-      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
-      interval: 5s
-      timeout: 15s
-      retries: 1
 
   transfer.api:
     build:
       context: .
       dockerfile: Transfer.Api/Dockerfile
     environment:
-      - TransferAccountApi=http://transfer.account
+      - TransferAccountApi=http://transfer.account:8080/
       - DatabaseOptions__ConnectionString=mongodb://guest:guest@transfer.database:27017
+      - RabbitMq__Host=rabbitmq
+    restart: on-failure
     ports:
       - 8100:8080
     networks:
       - mongodb
       - rabbit
     depends_on:
-      transfer.database:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
+      - transfer.database
+      - rabbitmq
 
   transfer.notification:
     build:
@@ -49,17 +44,16 @@ services:
       dockerfile: Transfer.Notification/Dockerfile
     environment:
       - DatabaseOptions__ConnectionString=mongodb://guest:guest@notification.database:27017
-      - Host=rabbitmq-container
+      - RabbitMq__Host=rabbitmq
+    restart: on-failure
     ports:
       - 8200:8080
     networks:
       - mongodb
       - rabbit
     depends_on:
-      notification.database:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
+      - notification.database
+      - rabbitmq
 
   transfer.account:
     build:
@@ -67,6 +61,7 @@ services:
       dockerfile: Transfer.Account/Dockerfile
     environment:
       - DatabaseOptions__ConnectionString=mongodb://guest:guest@account.database:27017
+      - RabbitMq__Host=rabbitmq
     restart: on-failure
     ports:
       - 8300:8080
@@ -74,11 +69,8 @@ services:
       - mongodb
       - rabbit
     depends_on:
-      account.database:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-        
+      - account.database
+      - rabbitmq
 
   transfer.database:
     image: mongo
@@ -121,9 +113,3 @@ services:
       - mongodb
     volumes:
       - AccountDb:/var/lib/mongo/data
-    healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 40s
