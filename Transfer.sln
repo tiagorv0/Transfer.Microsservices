@@ -3,15 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transfer.ApiGateway", "Transfer.ApiGateway\Transfer.ApiGateway.csproj", "{09992E29-342A-4200-BD49-328E7B7B68C3}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transfer.Api", "Transfer.Api\Transfer.Api.csproj", "{9D612DCA-378C-45B0-9C0D-BCFEB2F3C422}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transfer.Notification", "Transfer.Notification\Transfer.Notification.csproj", "{D044E0DF-7AE7-49CB-903B-9E3AA6FEAEFA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transfer.Account", "Transfer.Account\Transfer.Account.csproj", "{C35B7E17-9AFF-4755-9A73-140E21BDA849}"
-EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9C562525-2D8D-4B23-9588-80F5D80F2CA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +17,6 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{09992E29-342A-4200-BD49-328E7B7B68C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09992E29-342A-4200-BD49-328E7B7B68C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09992E29-342A-4200-BD49-328E7B7B68C3}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{09992E29-342A-4200-BD49-328E7B7B68C3}.Debug|x64.Build.0 = Debug|Any CPU
-		{09992E29-342A-4200-BD49-328E7B7B68C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09992E29-342A-4200-BD49-328E7B7B68C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{09992E29-342A-4200-BD49-328E7B7B68C3}.Release|x64.ActiveCfg = Release|Any CPU
-		{09992E29-342A-4200-BD49-328E7B7B68C3}.Release|x64.Build.0 = Release|Any CPU
 		{9D612DCA-378C-45B0-9C0D-BCFEB2F3C422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D612DCA-378C-45B0-9C0D-BCFEB2F3C422}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D612DCA-378C-45B0-9C0D-BCFEB2F3C422}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -53,14 +41,6 @@ Global
 		{C35B7E17-9AFF-4755-9A73-140E21BDA849}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C35B7E17-9AFF-4755-9A73-140E21BDA849}.Release|x64.ActiveCfg = Release|Any CPU
 		{C35B7E17-9AFF-4755-9A73-140E21BDA849}.Release|x64.Build.0 = Release|Any CPU
-		{9C562525-2D8D-4B23-9588-80F5D80F2CA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C562525-2D8D-4B23-9588-80F5D80F2CA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C562525-2D8D-4B23-9588-80F5D80F2CA1}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9C562525-2D8D-4B23-9588-80F5D80F2CA1}.Debug|x64.Build.0 = Debug|Any CPU
-		{9C562525-2D8D-4B23-9588-80F5D80F2CA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C562525-2D8D-4B23-9588-80F5D80F2CA1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C562525-2D8D-4B23-9588-80F5D80F2CA1}.Release|x64.ActiveCfg = Release|Any CPU
-		{9C562525-2D8D-4B23-9588-80F5D80F2CA1}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

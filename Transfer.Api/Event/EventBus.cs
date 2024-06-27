@@ -23,6 +23,8 @@ public class EventBus : IEventBus
         {
             HostName = _options.Host,
             Port = _options.Port,
+            UserName = _options.Username,
+            Password = _options.Password
         };
 
         using var connection = connectionFactory.CreateConnection();

@@ -20,6 +20,8 @@ public class TransferNotificationConsumer : BackgroundService
         {
             HostName = options.Value.Host,
             Port = options.Value.Port,
+            UserName = options.Value.Username,
+            Password = options.Value.Password
         };
 
         var connection = connectionFactory.CreateConnection();

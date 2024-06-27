@@ -1,4 +1,3 @@
-using RabbitMQ.Client;
 using Refit;
 using Transfer.Api.CrossCutting;
 using Transfer.Api.Domain.Options;
@@ -25,11 +24,8 @@ builder.Services.AddTransient<IEventBus, EventBus>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
