@@ -7,7 +7,7 @@
 <h3>Proposta: </h3>
 <p>Criar uma microserviço com mensageria.</p>
 <h3>O que foi desenvolvido:</h3>
-<p>Foi desenvolvido 3 API's em .NET 8 para gerenciar transferência de valores monetários parecido com PIX.</p>
+<p>Foi desenvolvido 3 API's em .NET 8 com bancos separados em MongoDB para gerenciar transferência de valores monetários parecido com o PIX.</p>
 <li>API com dados do usuário e valor em carteira.</li>
 <li>API para realizar transferências</li>
 <li>API para notificações</li>
