@@ -25,6 +25,9 @@
  <pre> docker compose up</pre>
 <br>
 
+<p>Depois de executado deverá ficar assim:</p>
+<p><img src="https://github.com/tiagorv0/Transfer.Microsservices/blob/main/images/Screenshot%202024-07-01%20120207.png" /></p>
+<br>
 <p>Ao rodar o projeto deve-se criar duas contas para realizar as transferências:</p>
 <pre>api/account/create-account</pre>
 <p>Crie os usuários com nome, transferKey e saldo da conta</p>
