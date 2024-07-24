@@ -1,0 +1,117 @@
+# mongo-databases-pods.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transfer-database
+  labels:
+    app: transfer-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transfer-database
+  template:
+    metadata:
+      labels:
+        app: transfer-database
+    spec:
+      containers:
+      - name: transfer-database
+        image: mongo
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: guest
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: guest
+        ports:
+        - containerPort: 27017
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: transfer-database
+spec:
+  selector:
+    app: transfer-database
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-database
+  labels:
+    app: notification-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification-database
+  template:
+    metadata:
+      labels:
+        app: notification-database
+    spec:
+      containers:
+      - name: notification-database
+        image: mongo
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: "guest"
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: "guest"
+        ports:
+        - containerPort: 27017
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notification-database
+spec:
+  selector:
+    app: notification-database
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-database
+  labels:
+    app: account-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account-database
+  template:
+    metadata:
+      labels:
+        app: account-database
+    spec:
+      containers:
+      - name: account-database
+        image: mongo
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: "guest"
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: "guest"
+        ports:
+        - containerPort: 27017
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: account-database
+spec:
+  selector:
+    app: account-database
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017

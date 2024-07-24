@@ -1,0 +1,56 @@
+# transfer-account-pod.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transfer-account-deployment
+  labels:
+    app: transfer-account
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transfer-account
+  template:
+    metadata:
+      labels:
+        app: transfer-account
+    spec:
+      containers:
+        - name: transfer-account
+          image: tiagorv0/transfer-account:latest
+          env:
+            - name: DatabaseOptions__ConnectionString
+              value: mongodb://guest:guest@account-database:27017
+            - name: RabbitMq__Host
+              value: rabbitmq-clusterip-service
+          ports:
+          - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: transfer-account-clusterip
+spec:
+  selector:
+    app: transfer-account
+  ports:
+  - port: 8300
+    targetPort: 8080
+    name: transfer-account
+    protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: transfer-account
+spec:
+  selector:
+    app: transfer-account
+  ports:
+  - port: 8300
+    targetPort: 8080
+    name: transfer-account
+    protocol: TCP
+    nodePort: 31830
+  type: NodePort

@@ -1,0 +1,57 @@
+# transfer-notification-pod.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transfer-notification-deployment
+  labels:
+    app: transfer-notification
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transfer-notification
+  template:
+    metadata:
+      labels:
+        app: transfer-notification
+    spec:
+      containers:
+        - name: transfer-notification
+          image: tiagorv0/transfer-notification:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DatabaseOptions__ConnectionString
+              value: mongodb://guest:guest@notification-database:27017
+            - name: RabbitMq__Host
+              value: rabbitmq-clusterip-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: transfer-notification-clusterip
+spec:
+  selector:
+    app: transfer-notification
+  ports:
+  - port: 8200
+    targetPort: 8080
+    name: transfer-notification
+    protocol: TCP
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: transfer-notification
+spec:
+  selector:
+    app: transfer-notification
+  ports:
+  - port: 8200
+    targetPort: 8080
+    name: transfer-notification
+    protocol: TCP
+    nodePort: 31820
+  type: NodePort
