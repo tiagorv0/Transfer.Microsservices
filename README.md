@@ -17,6 +17,7 @@
 <li>MongoDB</li>
 <li>Refit</li>
 <li>Docker</li>
+<li>Kubernetes</li>
 
 <h3 align="center">Para poder rodar o projeto</h3>
 <br>
